@@ -1,0 +1,618 @@
+h1 {
+  font-family: Helvetica, sans-serif;
+  font-size: 40pt;
+  text-align: center;
+  padding-bottom: 40px;
+  margin-top: 0;
+}
+
+  @keyframes colorCycle {
+  0%   { color: rgb(0 0 0); }
+  25%  { color: rgb(255 0 0); }
+  50%  { color: rgb(48 2 255); }
+  75%  { color: rgb(175 2 255); }
+  100% { color: rgb(0 0 0); }
+}
+h1 {
+  animation: colorCycle 5s infinite;
+}
+
+h2 {
+    font-family: Helvetica, sans-serif;
+    font-size: 30pt;
+    text-align: center;
+    /* padding-bottom: 40px; */
+    margin-top: 0;
+}
+
+h2 {
+    animation: colorCycle 5s infinite;
+}
+
+h3 {
+    font-family: Helvetica, sans-serif;
+    font-size: 14pt;
+    animation: colorCycle 5s infinite;
+}
+
+
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+figcaption {
+    text-align: center;
+}
+/*HAMBURGER/NAV===========================================================*/
+
+/* Hide checkbox */
+.inn-wrapper input {
+  display: none;
+}
+
+/* Veritcal nav layout */
+nav {
+  display: flex;
+  flex-direction: column;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Fade + slide in when checked */
+input:checked ~ nav {
+  opacity: 1;
+  transform: translateY(10px);
+  pointer-events: auto;
+}
+
+/* Nav links */
+nav a {
+  text-decoration: none;
+  color: black;
+  font-family: 'helvetica', sans-serif;
+  font-weight: 500;
+  
+}
+
+/*
+Hamburger Container
+============================================= */
+/*
+style the hamburger container */
+.hamburger {
+    background-color: transparent;
+    width: 26px; height: 26px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(4px);
+
+    position: relative;
+    z-index: 5;
+}
+
+.hamburger label:hover {
+    cursor: pointer;
+}
+
+/*
+Hamburger Rotate Wrapper
+============================================= */
+/*
+style the rotate wrapper */
+.hamburger .rotate-wrapper {
+    background-color: transparent;
+    width: 18px; height: 18px;
+
+    display: flex;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+}
+
+/*
+rotate the rotate wrapper 135Â° clockwise */
+input:checked + .hamburger .rotate-wrapper {
+    transform: rotate(135deg);
+}
+
+input:checked:hover + .hamburger .rotate-wrapper {
+    transform: rotate(225deg);
+}
+
+/*
+Hamburger
+====================================================== */
+/*
+style the label */
+.hamburger label {
+    background-color: transparent;
+    width: 26px; height: 26px;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/*Hamburger Lines */
+/*style the hamburger lines */
+.hamburger .line,
+.hamburger .line::before,
+.hamburger .line::after {
+    background-color: black;
+    height: 1.5px; width: 100%;
+}
+
+/*
+create a new positioning context for the top + bottom lines */
+.hamburger .line {
+    position: relative;
+}
+
+/*
+position + transition the top + bottom lines */
+.hamburger .line::before,
+.hamburger .line::after {
+    content: "";
+    position: absolute;
+    transition: 0.35s ease-in-out;
+}
+
+/*
+offset the top + bottom lines above + below the center line */
+.hamburger .line::before { top: -5px;}
+.hamburger .line::after { top: 5px;}
+/*
+rotate + reposition the top + bottom lines */
+input:checked + .hamburger .line::before,
+input:checked + .hamburger .line::after {
+    transform: rotate(90deg);
+    top:0;
+}
+
+/*
+fade out the bottom line upon completion of the X */
+input:checked + .hamburger .line::after {
+    opacity: 0;
+}
+/* ========================================== */
+
+/* CHRONOLOGICAL PROJECT GALLERY =========================*/
+.header-main {
+    text-align: center;
+}
+
+.lower-wrapper {
+    background-color: rgb(234, 234, 234);
+    padding-top: 10px;
+}
+
+.img-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.img-wrapper {
+    position: relative; /* create a new positioning context */
+    margin: 0; /* remove default figure margin */
+    cursor: pointer !important;
+}
+
+@media (min-width: 768px) {
+  .img-wrapper { width: calc(25% - 7.5px); }
+}
+@media (min-width: 992px) {
+  .img-wrapper { width: calc(20% - 8px); }
+}
+
+.img-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+/*CAPTION OVERLAY HOVER*============================================================*/
+.img-wrapper figcaption {
+    color: transparent;
+    text-transform: uppercase;
+    font-size: 8pt;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    font-family: "Helvetica", sans-serif;
+
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0; /* cover only the image */
+
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center text */
+
+    text-align: center; /* center text */
+    padding: 10px;
+    transition: 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.img-gallery figcaption:hover {
+    background-color: rgb(0 0 0 / 0.85);
+    color: white;
+}
+
+/*CURATED PROJECT GALLERIES========================================*/
+.project-gallery {
+    display: flex;
+    flex-wrap: wrap; /* allow items to wrap */
+    width: 100%;     /* full width of parent */
+    margin: 0;       /* remove any unwanted margin */
+    padding-top: 10px;
+    justify-content: center;
+    background-color: rgb(234, 234, 234);
+}
+
+
+.img-wrapper-curated {
+    flex: 0 0 43%;         /* do not grow/shrink, start at 43% width */
+    max-width: 43%;        
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.img-wrapper-curated img {
+    width: 100%;
+    height: 400px;        /* uniform height */
+    object-fit: cover;    /* crop to fit container */
+    display: block;
+}
+
+.img-wrapper-curated figcaption {
+    text-align: center;
+    font-size: 14pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.img-wrapper-curated figcaption:hover {
+    animation: colorCycle 5s infinite;
+}
+
+/* Mobile: 1 per row */
+@media (max-width: 768px) {
+    .img-wrapper-curated {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+
+/*INDIVIDUAL PROJECT PAGES========================================*/
+/*ARTBASH====================================================================*/
+.main-project-image {
+    display: flex;
+    background-color: rgb(234, 234, 234);
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.main-project-image img {
+    width: 80%;
+}
+/**/
+.span-image {
+    justify-content: center;
+    margin: -10px;
+}
+
+.span-image img {
+    max-width: 100%;
+    height: auto;
+}
+/**/
+.project-des {
+    background-color: rgb(234, 234, 234);
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    padding: 0 70px; /* adds padding on both sides */
+    justify-content: space-between; /* stretch children to fill space */
+    box-sizing: border-box; /* include padding inside width */
+}
+
+.main-event-poster {
+    max-width: 100%;
+    flex: 0 0 40%;
+    padding: 0;
+    margin: 0;
+
+    margin-right: 30px;
+}
+
+.main-event-poster img {
+    width: 100%;
+    align-self: center;
+    display: block; /*removes decender space from below the image*/
+}
+
+.project-information {
+    flex: 0 0 60%;
+}
+
+.project-information p {
+    margin-right: 40px;
+}
+
+.artbash-logo {
+    width: 20%;
+    margin: 0;
+    padding-top:30px;
+}
+
+.artbash-logo img {
+    width: 100%;
+}
+
+.artbash-logo figcaption {
+    margin: 10px;
+}
+/**/
+.artbashposters {
+  display: flex;
+  flex-wrap: wrap;          /* allows wrapping on smaller screens */
+  justify-content: center;  
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.poster {
+  margin: 0;
+  flex: 1 1 150px;          /* allows shrinking so all 6 fit */
+  max-width: 210px;         /* prevents them from getting too large */
+}
+
+.poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+
+.due-date-posters h3, .due-date-posters p {
+    padding: 0 70px;
+}
+
+.due-date-posters-gif {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.due-date-posters-gif img {
+    max-width: 50%;
+    flex: 0 1 50%;
+    transform: scale(0.95);
+}
+/*YOU'LL FIND ME THERE====================================================================*/
+.twoposters {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.twoposters img {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 1 50%;
+    object-fit: contain;
+    transform: scale(.9);
+}
+
+.text-sketch {
+    align-self: center;
+}
+
+.text-sketch img {
+    width: 100%;
+    align-self: center;
+}
+
+.og-imgs {
+    display: flex;
+    width:100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.og-imgs img {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 1 calc(100%/3);
+    object-fit: contain;
+}
+
+.lurking {
+    align-self: center;
+}
+
+
+/*TOYSET====================================================================*/
+.threedumpster {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.threedumpster img {
+    flex: 0 0 calc(100% / 3); /* each image gets 1/3 of the row */
+    width: 100%;             /* fill the flex item's width */
+    height: 300px;           /* set a uniform height (choose any) */
+    object-fit: cover;       /* keeps them visually equal */
+    display: block;
+}
+
+.includes {
+    display: flex;
+    width: 100%;
+    height: 600px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.includes img {
+    flex: 0 0 50%;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.dumpster {
+    width: 100%;
+}
+
+/*MINIONS POSTER====================================================================*/
+
+.threeprogress {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(234, 234, 234);
+}
+
+.threeprogress img {
+    flex: 0 0 calc(100% / 3); /* each image gets 1/3 of the row */
+    width: 100%;             /* fill the flex item's width */
+    height: 500px;           /* set a uniform height (choose any) */
+    object-fit: cover;       /* keeps them visually equal */
+    display: block;
+}
+
+.minion img {
+    max-width: 80%;
+}
+
+.minion-div {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    max-width: 100%;     /* ensure it never exceeds the wrapper */
+    box-sizing: border-box;
+}
+
+.minion-info {
+    flex: 1 1 60%;        /* grow, shrink, preferred size 40% */
+    max-width: 60%;
+}
+
+.minionposter {
+    flex: 1 1 40%;        /* grow, shrink, preferred size 60% */
+    max-width: 40%;
+}
+
+.minionposter img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*SCREENPRINT POSTER====================================================================*/
+
+.wp img {
+    max-width: 68%;
+}
+
+/*JAZZ POSTER====================================================================*/
+
+.jazz-info img {
+    max-width: 50%;
+}
+
+
+/*LAYERED POSTER====================================================================*/
+.phi {
+background-color: rgb(234, 234, 234);
+justify-content: space-around;
+justify-content: center;
+width: 100%;
+display: flex;
+}
+
+.phi img {
+    width: 100%;
+}
+
+/*PACKAGING====================================================================*/
+.prog-imgs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 55%;
+    margin: 0 auto;
+}
+
+.prog-imgs figure {
+    flex: 0 0 calc(100% / 3);
+}
+
+.prog-imgs img {
+    width: 100%;
+    height: auto;
+}
+
+
+/*SENSE OF SELF====================================================================*/
+
+.scroll {
+    display: flex;
+    flex-wrap: nowrap;        /* prevent wrapping */
+    overflow-x: auto;         /* enable horizontal scroll */
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.img-wrapper-scroll {
+    flex: 0 0 auto;           /* don’t shrink */
+    width: 220px;            
+    margin: 0;
+    cursor: pointer !important;
+}
+
+.img-wrapper-scroll img {
+    width: 100%;
+    display: block;
+}
+
+/*PICKLING====================================================================*/
+.fancy-box-container {
+  display: flex;
+  justify-content: center;  /* centers the row */
+  gap: 20px;
+}
+
+.fancy-box {
+  width: 400px;  /* or whatever width you want */
+}
+
+.fancy-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
